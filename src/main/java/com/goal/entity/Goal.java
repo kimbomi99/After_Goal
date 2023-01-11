@@ -19,12 +19,11 @@ public class Goal {
 	String goalList;
 	boolean success;
 
-
-	 /*@ManyToOne
-     @JoinColumn(name="userId") User user;
+/*
+	 @ManyToOne
+     @JoinColumn(name="userGoal") User user;
 
 	 @ManyToOne
-     @JoinColumn(name="userId") Present present;
-
+     @JoinColumn(name="userPresent") Present present;
 */
 }

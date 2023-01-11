@@ -14,9 +14,9 @@
 </head>
 <body>
 <div class="container">
-  <h1>목표</h1>
+  <h1>목표수정</h1>
   
-  <form method="post" action="insert">
+  <form method="post">
     <table class="list condensed">
       <thead>
         <tr>
@@ -26,29 +26,26 @@
         </tr>
       </thead>
       <tbody>
-        <c:forEach var="goal" items="${ goals }">
-          <tr>
-          	<td>${goal.userId }</td>
-            <td><a href="update?id=${ goal.id }">${ goal.goalList }</a></td> 
-            <td>${ goal.success =="true" ? "Complete" : "falid" }</td>
-            
-            <td><a href="delete?id=${ goal.id }" class="btn" data-confirm-delete>삭제</a></td>
-          </tr>
-        </c:forEach>
         <tr>
-           <td><input type="text" name="userId" style="width: 250px;" /></td>
-           <td><input type="text" name="goalList" style="width: 500px;" /></td>
+           <td><input type="text" name="userId" style="width: 250px;" value="${ goal.userId }"  /></td>
+           <td><input type="text" name="goalList" style="width: 500px;" value="${ goal.goalList }" /></td>
            <td>
            	<label>
            		<input type="radio" name="success" value="true" /> 달성 </label>
         	<label>
-        		<input type= "radio" name="success" value="false" /> 미달성 </label>
+        		<input type= "radio" name="success"  value="false" /> 미달성 </label>
            	</td> 
            <td><button type="submit" class="btn">저장</button></td>
         </tr>
       </tbody>
     </table>
   </form>
+  <script>
+  	if(!$('input:radio[name=success]).is(':checked')) {   
+	   		alert("꼭 선택해 주세요.");
+	   		return;
+			}
+  </script>
 
 </div>
 </body>
