@@ -26,7 +26,8 @@ public class MyUserDetails implements UserDetails {
     final String email;
 
     public MyUserDetails(User user) {
-        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+
+    	authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
         this.username = user.getUserId();
         this.password = user.getPassword();

@@ -36,7 +36,7 @@ public class UserController {
         return "goal/list";
     }
 
-    @RequestMapping("user/index")
+    @RequestMapping("index")
     public String index(Model model) {
         return "user/index";
     }

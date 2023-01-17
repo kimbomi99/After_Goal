@@ -1,5 +1,7 @@
 package com.goal.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.goal.entity.Goal;
+import com.goal.entity.User;
 import com.goal.repository.GoalRepository;
 
 @Controller
@@ -20,12 +23,17 @@ public class GoalController {
 
     @RequestMapping("list")
     public String list(Model model) {
-        model.addAttribute("goals", goalRepository.findAll());
+
+    	String userId = User.currentUserName();
+    	List<Goal> goals = goalRepository.findByUserId(userId);
+        model.addAttribute("goals", goals);
         return "goal/list";
     }
 
     @PostMapping("insert")
     public String insert(Model model, Goal goal) {
+
+    	goal.setUserId(User.currentUserName());
         goalRepository.save(goal);
         return "redirect:list";
     }
@@ -42,7 +50,8 @@ public class GoalController {
 
     @PostMapping("update")
 	public String update(Model model, Goal goal) {
-		goalRepository.save(goal);
+
+    	goalRepository.save(goal);
 
 		return "redirect:list";
 	}

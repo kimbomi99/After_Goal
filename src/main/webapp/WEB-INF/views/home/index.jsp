@@ -18,6 +18,7 @@
 
     <sec:authorize access="not authenticated">
       <a class="btn" href="${R}login">로그인</a>
+      <a href="${R}join" class="btn">사용자 등록</a>                  
     </sec:authorize>
     <sec:authorize access="authenticated">
       <a class="btn" href="${R}user/index">사용자 페이지</a>

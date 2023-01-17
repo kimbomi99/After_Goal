@@ -3,6 +3,7 @@ package com.goal.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
@@ -15,6 +16,7 @@ public class UserService {
 
     @Autowired
     public UserRepository userRepository;
+    @Autowired PasswordEncoder passwordEncoder;
 
     public List<User> findAll() {
         return userRepository.findAll();
@@ -39,7 +41,7 @@ public class UserService {
     public User createEntity(UserRegistration userRegistration) {
         User user = new User();
         user.setUserId(userRegistration.getUserId());
-        user.setPassword(userRegistration.getPasswd1());
+        user.setPassword(passwordEncoder.encode(userRegistration.getPasswd1()));
         user.setName(userRegistration.getName());
         user.setEmail(userRegistration.getEmail());
         user.setEnabled(true);

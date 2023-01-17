@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <c:url var="R" value="/" />
 <!DOCTYPE html>
 <html>
@@ -17,17 +18,17 @@
   <h1>목표수정</h1>
   
   <form method="post">
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     <table class="list condensed">
       <thead>
         <tr>
-          <th>아이디</th>
           <th>목표</th>
           <th>달성여부</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-           <td><input type="text" name="userId" style="width: 250px;" value="${ goal.userId }"  /></td>
+        <input type="hidden" name="userId" value="${ goal.userId }">
            <td><input type="text" name="goalList" style="width: 500px;" value="${ goal.goalList }" /></td>
            <td>
            	<label>

@@ -44,7 +44,7 @@ public class SecurityConfig {
 	    @Bean
 	    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	        http.authorizeRequests().antMatchers("/goal/**").authenticated()
-	        .antMatchers("/user/**").authenticated()
+	        .antMatchers("/user/**").permitAll()
 	                .and()
 	                    .csrf().ignoringAntMatchers("/res/**")
 	                .and()
@@ -56,7 +56,7 @@ public class SecurityConfig {
 	                    .loginPage("/login")
 	                    .loginProcessingUrl("/login_processing")
 	                    .failureUrl("/login?error")
-	                    .defaultSuccessUrl("/", true)
+	                    .defaultSuccessUrl("/goal/list", true)
 	                    .usernameParameter("userId")
 	                    .passwordParameter("password")
 	                .and()
