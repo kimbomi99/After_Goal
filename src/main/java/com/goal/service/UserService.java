@@ -45,8 +45,6 @@ public class UserService {
         user.setName(userRegistration.getName());
         user.setEmail(userRegistration.getEmail());
         user.setEnabled(true);
-        user.setList_count(0);
-        user.setSuccess_count(0);
         return user;
     }
 

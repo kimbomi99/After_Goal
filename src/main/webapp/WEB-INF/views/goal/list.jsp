@@ -7,7 +7,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="${R}common.js"></script>
+  <script src="${R}res/common.js"></script>
   <link rel="stylesheet" type="text/css" href="${R}res/common.css" />
   <style>
     td:nth-child(1) { text-align: center; min-width: 100px; }  
@@ -32,7 +32,6 @@
           <tr>
             <td><a href="update?id=${ goal.id }">${ goal.goalList }</a></td> 
             <td>${ goal.success =="true" ? "Complete" : "falid" }</td>
-            
             <td><a href="delete?id=${ goal.id }" class="btn" data-confirm-delete>삭제</a></td>
           </tr>
         </c:forEach>
@@ -49,6 +48,13 @@
         </tr>
       </tbody>
     </table>
+    
+    <h2>${ list_count } </h2>
+    <h3>${ success_count } </h3>
+    
+    <c:if test="${ list_count == success_count && list_count != 0 }">
+      <div class="success"> "모든 목표 달성!! 축하드립니다~" </div>
+    </c:if>
   </form>
 
 </div>

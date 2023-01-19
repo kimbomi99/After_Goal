@@ -7,8 +7,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="${R}common.js"></script>
-  <link rel="stylesheet" type="text/css" href="${R}common.css" />
+  <script src="${R}res/common.js"></script>
+  <link rel="stylesheet" type="text/css" href="${R}res/common.css" />
   <style>
     td:nth-child(1) { text-align: center; min-width: 100px; }  
   </style>
