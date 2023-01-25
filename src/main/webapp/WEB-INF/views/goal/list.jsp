@@ -49,9 +49,15 @@
       </tbody>
     </table>
     
+    <a href="present" class="btn" >보상 설정</a>
+    
     <h2>${ list_count } </h2>
     <h3>${ success_count } </h3>
     
+    <c:forEach var="present" items="${ presents }">
+    	<h4>${ present.reward } </h4>
+    	<h5>${ present.resolution }</h5>
+    </c:forEach>
     <c:if test="${ list_count == success_count && list_count != 0 }">
       <div class="success"> "모든 목표 달성!! 축하드립니다~" </div>
     </c:if>

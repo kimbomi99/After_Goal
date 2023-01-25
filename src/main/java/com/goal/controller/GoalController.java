@@ -34,9 +34,11 @@ public class GoalController {
     	List<Goal> goals = goalRepository.findByUserId(userId);
     	long list_count=goalRepository.countByUserId(userId);
     	long success_count=goalRepository.countByUserIdAndSuccess(userId, true);
+    	List<Present> presents=presentRepository.findByUserId(userId);
         model.addAttribute("goals", goals);
         model.addAttribute("list_count", list_count);
         model.addAttribute("success_count", success_count);
+        model.addAttribute("presents", presents);
         return "goal/list";
     }
 
@@ -80,15 +82,19 @@ public class GoalController {
     public String present(Model model) {
 
     	String userId = User.currentUserName();
-    	List<Present> presents = presentRepository.findByUserId(userId);
-		model.addAttribute("presents", presents);
-
+    	int count = presentRepository.countByUserId(userId);
+    	if(count == 0)
+    		model.addAttribute("present", new Present());
+    	else
+    		model.addAttribute("present", presentRepository.findByUserId(userId));
 		return "goal/present";
 	}
 
     @PostMapping("present") //보상설정하기
 	public String present(Model model, Present present) {
 
+    	String userId = User.currentUserName();
+    	present.setUserId(userId);
     	presentRepository.save(present);
 
 		return "redirect:list";
