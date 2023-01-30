@@ -9,6 +9,7 @@ import com.goal.entity.Goal;
 
 public interface GoalRepository extends JpaRepository<Goal, Integer> {
 
+	Goal findById(int id);
 	List<Goal> findByUserId(String userId);
 	Long countByUserId(String userId);
 	Long countByUserIdAndSuccess(String userId, Boolean success);

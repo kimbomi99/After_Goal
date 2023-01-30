@@ -31,5 +31,5 @@ public class UserRegistration {
     @Email (message="이메일 주소가 올바르지 않습니다")
     String email;
 
-    Integer departmentId;
+   // Integer departmentId;
 }

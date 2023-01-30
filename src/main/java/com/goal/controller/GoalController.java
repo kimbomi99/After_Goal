@@ -34,11 +34,10 @@ public class GoalController {
     	List<Goal> goals = goalRepository.findByUserId(userId);
     	long list_count=goalRepository.countByUserId(userId);
     	long success_count=goalRepository.countByUserIdAndSuccess(userId, true);
-    	List<Present> presents=presentRepository.findByUserId(userId);
         model.addAttribute("goals", goals);
         model.addAttribute("list_count", list_count);
         model.addAttribute("success_count", success_count);
-        model.addAttribute("presents", presents);
+
         return "goal/list";
     }
 
@@ -54,7 +53,7 @@ public class GoalController {
     @GetMapping("update") //목표수정하기
     public String update(Model model, @RequestParam("id") int id) {
 
-		Goal goal = goalRepository.findById(id).get();
+		Goal goal = goalRepository.findById(id);
 
 		model.addAttribute("goal", goal);
 

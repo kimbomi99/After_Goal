@@ -48,9 +48,11 @@ public class UserService {
         return user;
     }
 
-    public void save(UserRegistration userRegistration) {
+    public User save(UserRegistration userRegistration) {
         User user = createEntity(userRegistration);
         userRepository.save(user);
+
+        return user;
     }
 
 }

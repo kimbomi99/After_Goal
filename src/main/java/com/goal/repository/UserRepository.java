@@ -6,5 +6,6 @@ import com.goal.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+	User findById(int id);
 	User findByUserId(String userId);
 }
