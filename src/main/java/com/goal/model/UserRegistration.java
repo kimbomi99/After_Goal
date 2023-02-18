@@ -30,6 +30,4 @@ public class UserRegistration {
     @NotEmpty(message="이메일 주소를 입력하세요")
     @Email (message="이메일 주소가 올바르지 않습니다")
     String email;
-
-   // Integer departmentId;
 }
