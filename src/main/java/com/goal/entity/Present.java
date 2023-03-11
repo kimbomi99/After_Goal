@@ -11,7 +11,9 @@ public class Present {
 	@Id
 	String userId;
 
-	String reward;
+	String filename;
+	String fileOriName;
+	String fileurl;
 	String resolution;
 
 }

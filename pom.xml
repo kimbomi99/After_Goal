@@ -81,6 +81,27 @@
       <groupId>io.projectreactor.netty</groupId>
       <artifactId>reactor-netty</artifactId>
     </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+          <!-- 대용량 파일 처리 -->
+          <dependency>
+              <groupId>commons-io</groupId>
+              <artifactId>commons-io</artifactId>
+              <version>2.6</version>
+          </dependency>
+		
+		<!--Multipart File Up&Download -->
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-lang3</artifactId>
+		<version>3.0</version>
+	</dependency>
+
+          <dependency>
+    <groupId>servlets.com</groupId>
+    <artifactId>cos</artifactId>
+    <version>05Nov2002</version>
+</dependency>
 
 	
 	

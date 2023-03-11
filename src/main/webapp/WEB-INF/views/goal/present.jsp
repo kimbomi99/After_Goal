@@ -27,66 +27,22 @@
 <div class="container">
   <h1>보상 설정</h1>
   
-  <form method="post">
+  <form method="post" enctype="multipart/form-data">
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     <table class="list condensed">
       <tbody>
         <tr>
-           <td><textarea class="summernote" name="reward">${ present.reward }</textarea></td>
+           <td><input type="file" name="files"></td>
            </tr>
         <tr>
            <td><input type="text" name="resolution" style="width: 500px;" /></td>
         </tr>
         <tr>
-           <td><a onclick="save()">설정</a></td>
+           <td><button type="submit" class="btn">저장</button></td>
         </tr>
       </tbody>
     </table>
   </form>
-  <script>
-  $('.summernote').summernote({
-      // 에디터 높이
-      height: 150,
-      // 에디터 한글 설정
-      lang: "ko-KR",
-      // 에디터에 커서 이동 (input창의 autofocus라고 생각)
-      focus : true,
-      toolbar: [
-          // 글꼴 설정
-          ['fontname', ['fontname']],
-          // 글자 크기 설정
-          ['fontsize', ['fontsize']],
-          // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
-          ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-          // 글자색
-          ['color', ['forecolor','color']],
-          // 표만들기
-          ['table', ['table']],
-          // 글머리 기호, 번호매기기, 문단정렬
-          ['para', ['ul', 'ol', 'paragraph']],
-          
-          ['insert',['picture','link','video']],
-          // 줄간격
-          ['height', ['height']],
-          // 코드보기, 확대해서보기, 도움말
-          ['view', ['codeview','fullscreen', 'help']]
-      ],
-      // 추가한 글꼴
-      fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
-      // 추가한 폰트사이즈
-      fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
-
-  });
-  
-  function save() {
-	    var s = $('.summernote').summernote('code');
-	    $('input[name=reward]').val(s);
-	    $('form').submit();
-	  }
-
-  
-  	
-  </script>
 
 </div>
 </body>

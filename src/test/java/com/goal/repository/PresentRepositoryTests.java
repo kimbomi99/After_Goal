@@ -41,7 +41,7 @@ public class PresentRepositoryTests {
         // 새 레코드 객체 생성
         Present present1 = new Present();
         present1.setUserId("abc");
-        present1.setReward("아이패드");
+        present1.setFilename("아이패드");
         present1.setResolution("열심히 하자! 할 수 있다!!!");
 
         // 저장
@@ -60,7 +60,7 @@ public class PresentRepositoryTests {
 
         // 첫번째 레코드의 모든 멤버 변수 값을 수정한다.
         // 단 userId는 제외
-        present1.setReward("노트북");
+        present1.setFilename("노트북");
         present1.setResolution("열심히 하자~ 할 수 있다!!!");
 
         // 저장
@@ -72,7 +72,7 @@ public class PresentRepositoryTests {
         assertEquals(present1, present2);
 
         // 다시 값 수정
-        present1.setReward("최신형 휴대폰");
+        present1.setFilename("최신형 휴대폰");
         present1.setResolution("열심히 하자~ 할 수 있다!");
 
         // 저장

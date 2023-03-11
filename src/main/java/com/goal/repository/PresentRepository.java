@@ -12,4 +12,6 @@ public interface PresentRepository extends JpaRepository<Present, Integer> {
 
 	Present findByUserId(String userId);
 
+	void deleteAllByUserId(String userId);
+
 }
