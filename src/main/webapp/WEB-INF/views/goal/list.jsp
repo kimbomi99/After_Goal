@@ -50,7 +50,10 @@
     </table>
     
     <a href="present" class="btn" >보상 설정</a>
-    <img src="/images/${image.filename}" style="width:300px;height:auto;">
+    
+    <c:if test="${ image!=null  }" >
+    	<img src="/images/${image.filename}" style="width:300px;height:auto;">
+    </c:if>
     
     <h2>${ list_count } </h2>
     <h3>${ success_count } </h3>

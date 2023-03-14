@@ -113,7 +113,8 @@ public class GoalController {
     	String sourceFileNameExtension=FilenameUtils.getExtension(sourceFileName).toLowerCase();
     	File destinationFile;
     	String destinationFileName;
-    	String fileUrl="C:/Users/LG/Documents/workspace-spring-tool-suite-4-4.11.0.RELEASE/AfterGoal1/src/main/resources/static/images/";
+    	String fileUrl="C:/imageUpload/";
+    			//"C:/Users/LG/Documents/workspace-spring-tool-suite-4-4.11.0.RELEASE/AfterGoal1/src/main/resources/static/images/";
 
     	do {
     		destinationFileName=RandomStringUtils.randomAlphanumeric(32)+"."+sourceFileNameExtension;
@@ -129,7 +130,7 @@ public class GoalController {
     	Present userPresent= presentRepository.findByUserId(userId);
     	if(userPresent!=null) {
     		String findfile=userPresent.getFilename();
-    		String path =  "C:\\Users\\LG\\Documents\\workspace-spring-tool-suite-4-4.11.0.RELEASE\\AfterGoal1\\src\\main\\resources\\static\\images";
+    		String path =  "C:\\imageUpload\\";
         	//현재 게시판에 존재하는 파일객체를 만듬
         	File file = new File(path + "\\" + findfile);
         	file.delete(); // 파일 삭제
