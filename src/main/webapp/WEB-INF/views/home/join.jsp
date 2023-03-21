@@ -17,7 +17,8 @@
 <body>
 <div class="container">
   <div class="box">
-    <h1>회원 가입</h1>
+    <h1>After Goal</h1>
+    <h2>회원가입</h2>
     <form:form method="post" modelAttribute="userRegistration">
       <div>
         <div class="label">아이디:</div>

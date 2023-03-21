@@ -25,7 +25,8 @@
 </head>
 <body>
 <div class="container">
-  <h1>보상 설정</h1>
+  <h1>After Goal</h1>
+  <h2>보상 설정</h2>
   
   <form method="post" enctype="multipart/form-data">
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

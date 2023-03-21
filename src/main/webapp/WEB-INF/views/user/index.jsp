@@ -16,7 +16,8 @@
 <body>
 <div class="container">
   <div class="box">
-    <h1>사용자 페이지</h1>
+    <h1>After Goal</h1>
+    <h2>마이페이지</h2>
     <table>
       <tr>
           <td>로그인ID</td>

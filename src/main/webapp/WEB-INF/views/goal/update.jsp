@@ -15,7 +15,8 @@
 </head>
 <body>
 <div class="container">
-  <h1>목표수정</h1>
+  <h1>After Goal</h1>
+  <h2>목표수정</h2>
   
   <form method="post">
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

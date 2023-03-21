@@ -16,7 +16,8 @@
 <body>
 <div class="container">
   <form method="post" action="${R}login_processing" class="box">
-    <h1>로그인</h1>
+    <h1>After Goal</h1>
+    <h2>로그인</h2>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     <table>
       <tr>

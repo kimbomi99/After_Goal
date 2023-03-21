@@ -8,22 +8,19 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link rel="stylesheet" href="${R}res/common.css">
   <style>
-    div.box { padding: 50px; width: 300px; }
+    div.box { padding: 10px; width: 1000px; height: 500px; }
   </style>
 </head>
 <body>
 <div class="container">
   <div class="box">
-    <h1>첫 페이지</h1>
+    <h1>After Goal</h1>
 
-    <sec:authorize access="not authenticated">
-      <a class="btn" href="${R}login">로그인</a>
-      <a href="${R}join" class="btn">사용자 등록</a>                  
-    </sec:authorize>
-    <sec:authorize access="authenticated">
-      <a class="btn" href="${R}user/index">사용자 페이지</a>
-      <a class="btn" href="${R}logout_processing">로그아웃</a>
-    </sec:authorize>
+      <a href="${R}login" class="banner" >로그인</a>
+      <a href="${R}join" class="banner" >회원가입</a>
+      <img src="/images/DSC_0077_edited.jpg" width="1100"; height="600";>                  
+  
+   
   </div>
 </div>
 </body>

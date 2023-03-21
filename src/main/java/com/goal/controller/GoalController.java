@@ -34,7 +34,6 @@ public class GoalController {
   	PresentRepository presentRepository;
 
 
-
     @RequestMapping("list") //메인화면
     public String list(Model model) {
 
