@@ -8,6 +8,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="${R}res/common.js"></script>
+  <script src="${R}res/rolling.js"></script>
+  
   <link rel="stylesheet" type="text/css" href="${R}res/common.css" />
   <style>
     td:nth-child(1) { text-align: center; min-width: 100px; }  
@@ -16,10 +18,35 @@
 </head>
 <body>
 <div class="container">
-  <h1>After Goal</h1>
+<a href="${R}user/index" style="margin: 10% 1% 0% 90%;">마이페이지</a>
+<a href="${R}logout_processing" >로그아웃</a>
+  <h1>After Goal</h1><hr>
+ 
+  <table width="757" border="0" cellspacing="0" cellpadding="0">
+
+
+ <tr>
+  <td height="62">
   
-  <a href="${R}user/index" style="margin: 10% 1% 0% 90%;">마이페이지</a>
-  <a href="${R}logout_processing" >로그아웃</a><hr>
+   <div style="position:absolute; width:25%; height:3%; overflow:hidden; left: 70%; top: 16%;">
+   
+       <div style="position:relative; top: 10%; text-align: center;" id="banner_1">
+       
+       	 <c:forEach var="success" items="${ allSuccess }">
+          
+            <a style="font-size: 12pt; color: blue;">${ success.userId }님이 모든 목표를 달성했습니다! <br></a>
+          </c:forEach>
+      
+       	
+        </div>
+          
+      </div>
+      
+    </td>       
+  </tr>
+ 
+</table>
+
     
   <form method="post" action="insert">
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -35,7 +62,7 @@
         <c:forEach var="goal" items="${ goals }">
           <tr>
             <td><a href="update?id=${ goal.id }">${ goal.goalList }</a></td> 
-            <td>${ goal.success =="true" ? "Complete" : "falid" }</td>
+            <td style="color: red;">${ goal.success =="true" ? "Complete" : "falid" }</td>
             <td><a href="delete?id=${ goal.id }" class="btn" data-confirm-delete>삭제</a></td>
           </tr>
         </c:forEach>
@@ -72,4 +99,9 @@
 
 </div>
 </body>
+<script>
+// banner_roll("div태그 id", 배너1개높이, 딜레이, 1칸이동속도, 0);
+
+banner_roll("banner_1", 18, 2000, 40, 0);
+</script>
 </html>

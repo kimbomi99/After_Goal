@@ -18,11 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.goal.entity.AllSuccess;
 import com.goal.entity.Goal;
 import com.goal.entity.Present;
 import com.goal.entity.User;
+import com.goal.repository.AllSuccessRepository;
 import com.goal.repository.GoalRepository;
 import com.goal.repository.PresentRepository;
+import com.goal.service.AllSuccessService;
+import com.goal.service.PresentService;
 
 @Controller
 @RequestMapping("goal")
@@ -32,6 +36,12 @@ public class GoalController {
     GoalRepository goalRepository;
     @Autowired
   	PresentRepository presentRepository;
+    @Autowired
+  	PresentService presentService;
+    @Autowired
+  	AllSuccessRepository allSuccessRepository;
+    @Autowired
+  	AllSuccessService allSuccessService;
 
 
     @RequestMapping("list") //메인화면
@@ -42,22 +52,28 @@ public class GoalController {
     	List<Goal> goals = goalRepository.findByUserId(userId);
     	long list_count=goalRepository.countByUserId(userId);
     	long success_count=goalRepository.countByUserIdAndSuccess(userId, true);
+
+    	List<AllSuccess> allSuccess=allSuccessRepository.findBySuccess(true);
+
     	Present present=presentRepository.findByUserId(userId);
 
         model.addAttribute("goals", goals);
         model.addAttribute("list_count", list_count);
         model.addAttribute("success_count", success_count);
         model.addAttribute("image", present);
+        model.addAttribute("allSuccess", allSuccess);
 
         return "goal/list";
     }
 
     @PostMapping("insert") //목표작성하기
-    public String insert(Model model, Goal goal) {
+    public String insert(Model model, Goal goal, AllSuccess allSuccess) {
 
     	String userId = User.currentUserName();
     	goal.setUserId(userId);
         goalRepository.save(goal);
+        allSuccessService.save(userId);
+
         return "redirect:list";
     }
 
@@ -73,15 +89,20 @@ public class GoalController {
 
     @PostMapping("update") //목표수정하기
 	public String update(Model model, Goal goal) {
-
+    	String userId = User.currentUserName();
     	goalRepository.save(goal);
+    	allSuccessService.save(userId);
 
 		return "redirect:list";
 	}
 
-    @RequestMapping("delete") //목표삭제하기
+    @RequestMapping("delete") //목표삭제하기-> 갯수가0일 경우 목표완료로 보지 않음을 처리해야함
     public String delete(Model model, int id) {
+
         goalRepository.deleteById(id);
+        String userId = User.currentUserName();
+        allSuccessService.save(userId);
+
         return "redirect:list";
     }
 
@@ -106,8 +127,6 @@ public class GoalController {
     @PostMapping("present") //보상설정하기
 	public String present(HttpServletRequest request, @RequestPart MultipartFile files, Model model, Present present) throws Exception {
 
-    	Present present1= new Present();
-
     	String sourceFileName=files.getOriginalFilename();
     	String sourceFileNameExtension=FilenameUtils.getExtension(sourceFileName).toLowerCase();
     	File destinationFile;
@@ -123,25 +142,7 @@ public class GoalController {
     	destinationFile.getParentFile().mkdirs();
     	files.transferTo(destinationFile);
 
-
-    	String userId = User.currentUserName();
-
-    	Present userPresent= presentRepository.findByUserId(userId);
-    	if(userPresent!=null) {
-    		String findfile=userPresent.getFilename();
-    		String path =  "C:\\imageUpload\\";
-        	//현재 게시판에 존재하는 파일객체를 만듬
-        	File file = new File(path + "\\" + findfile);
-        	file.delete(); // 파일 삭제
-    		presentRepository.deleteAllByUserId(userId);
-    	}
-
-    	present1.setUserId(userId);
-    	present1.setFilename(destinationFileName);
-    	present1.setFileOriName(sourceFileName);
-    	present1.setFileurl(fileUrl);
-    	present1.setResolution(present.getResolution());
-    	presentRepository.save(present1);
+    	presentService.save(destinationFileName, sourceFileName, fileUrl, present);
 
 		return "redirect:list";
 	}
