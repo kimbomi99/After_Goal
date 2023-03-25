@@ -8,17 +8,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="${R}res/common.css">
 <style>
-  div.box { padding: 50px; width: 300px; } 
+  div.box { width: 500px; margin: 10% 0% 0% 42%; } 
   div.label { margin-top:10px; }
+  form { margin: 10% 0% 0% 9%; }
+  h2 { margin: 10% 0% 0% 20%; font-size: 20pt; }
   .error { color: red; display: block; }
-  button { margin-top: 20px; }
+  button { margin: 10% 2% 0% 20%; }
 </style>
 </head>
 <body>
 <div class="container">
   <div class="box">
     <h1>After Goal</h1>
-    <h2>회원가입</h2>
+    <h2>Join</h2>
     <form:form method="post" modelAttribute="userRegistration">
       <div>
         <div class="label">아이디:</div>

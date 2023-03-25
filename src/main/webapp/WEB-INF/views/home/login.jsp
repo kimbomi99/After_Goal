@@ -7,26 +7,27 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link rel="stylesheet" href="${R}res/common.css">
   <style>
-    h1 { text-align: center; }
-    form { padding: 10px 30px 30px 30px; width: 300px; }
-    button { margin-top: 20px; margin-left: 50px; }
+   h2 { margin: 10% 0% 5% 20%; font-size: 20pt; }
+    form { width: 500px; margin: 10% 0% 0% 42%; }
+    button { margin: 10% 0% 0% 22%; }
     .error { color: red; }
+    table { width: 50%; font-size: 15pt; margin-left: -5%; }
   </style>
 </head>
 <body>
 <div class="container">
   <form method="post" action="${R}login_processing" class="box">
     <h1>After Goal</h1>
-    <h2>로그인</h2>
+    <h2>Login</h2>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     <table>
       <tr>
-        <td>아이디:</td>
-        <td><input type="text" name="userId" /></td>
+        <td>Id:</td>
+        <td><input type="text" style="font-size: 13pt;" name="userId" /></td>
       </tr>
       <tr>
-        <td>비밀번호:</td>
-        <td><input type="password" name="password" /></td>
+        <td>Password:</td>
+        <td><input type="password" style="font-size: 13pt;" name="password" /></td>
       </tr>
     </table>
     <button type="submit" class="btn">로그인</button>

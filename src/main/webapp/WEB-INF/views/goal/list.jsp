@@ -18,7 +18,8 @@
 </head>
 <body>
 <div class="container">
-<a href="${R}user/index" style="margin: 10% 1% 0% 90%;">마이페이지</a>
+<a style="margin: 10% 1% 0% 80%; font-size: 13pt;"> ${ userId }님 안녕하세요! </a>
+<a href="${R}user/index" style="margin: 0% 1% 0% 0%;">마이페이지</a>
 <a href="${R}logout_processing" >로그아웃</a>
   <h1>After Goal</h1><hr>
  

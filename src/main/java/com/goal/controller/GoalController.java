@@ -57,6 +57,7 @@ public class GoalController {
 
     	Present present=presentRepository.findByUserId(userId);
 
+    	model.addAttribute("userId", userId);
         model.addAttribute("goals", goals);
         model.addAttribute("list_count", list_count);
         model.addAttribute("success_count", success_count);

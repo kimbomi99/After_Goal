@@ -8,8 +8,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link rel="stylesheet" href="${R}res/common.css">
   <style>
-    div.box { padding: 30px; }
-    table { border-collapse: collapse; width: 400px; margin-bottom: 20px; }
+   h2 { margin: 10% 0% 5% 15%; font-size: 20pt; }
+    div.box { width: 500px; margin: 10% 0% 0% 42%; }
+    table { border-collapse: collapse; width: 80%; font-size: 13pt; margin-left: -13%; }
     td { border: 1px solid #aaa; padding: 8px; }
   </style>
 </head>
@@ -17,7 +18,7 @@
 <div class="container">
   <div class="box">
     <h1>After Goal</h1>
-    <h2>마이페이지</h2>
+    <h2>My Page</h2>
     <table>
       <tr>
           <td>로그인ID</td>
@@ -32,8 +33,6 @@
           <td><sec:authentication property="principal.email" /></td>
       </tr>
     </table>
-
-    <a class="btn" href="${R}logout_processing">로그아웃</a>
   </div>
 </div>
 </body>
