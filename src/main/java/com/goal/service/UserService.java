@@ -41,7 +41,7 @@ public class UserService {
     public User createEntity(UserRegistration userRegistration) {
         User user = new User();
         user.setUserId(userRegistration.getUserId());
-        user.setPassword(passwordEncoder.encode(userRegistration.getPasswd1()));
+        user.setPassword(passwordEncoder.encode(userRegistration.getPasswd1())); //비밀번호는 인코딩되어 저장
         user.setName(userRegistration.getName());
         user.setEmail(userRegistration.getEmail());
         user.setEnabled(true);

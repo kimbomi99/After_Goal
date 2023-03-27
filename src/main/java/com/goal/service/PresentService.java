@@ -24,7 +24,7 @@ public class PresentService {
     	if(userPresent!=null) {
     		String findfile=userPresent.getFilename();
     		String path =  "C:\\imageUpload\\";
-        	//현재 게시판에 존재하는 파일객체를 만듬
+        	//현재 리스트에 존재하는 파일객체를 만듬
         	File file = new File(path + "\\" + findfile);
         	file.delete(); // 파일 삭제
     		presentRepository.deleteAllByUserId(userId);

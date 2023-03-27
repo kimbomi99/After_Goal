@@ -44,20 +44,27 @@ public class GoalController {
   	AllSuccessService allSuccessService;
 
 
-    @RequestMapping("list") //메인화면
+    //메인화면
+    @RequestMapping("list")
     public String list(Model model) {
 
-
     	String userId = User.currentUserName();
+
+    	//해당 유저의 목표리스트
     	List<Goal> goals = goalRepository.findByUserId(userId);
+
+    	//해당 유저의 총 목표 갯수
     	long list_count=goalRepository.countByUserId(userId);
+
+    	//해당 유저의 총 목표 달성 갯수
     	long success_count=goalRepository.countByUserIdAndSuccess(userId, true);
 
+    	//모든 유저대상, 목표 모두 달성한 유저리스트
     	List<AllSuccess> allSuccess=allSuccessRepository.findBySuccess(true);
 
+    	//해당 유저가 설정한 보상 및 다짐
     	Present present=presentRepository.findByUserId(userId);
 
-    	model.addAttribute("userId", userId);
         model.addAttribute("goals", goals);
         model.addAttribute("list_count", list_count);
         model.addAttribute("success_count", success_count);
@@ -67,18 +74,23 @@ public class GoalController {
         return "goal/list";
     }
 
-    @PostMapping("insert") //목표작성하기
+
+    //목표작성하기
+    @PostMapping("insert")
     public String insert(Model model, Goal goal, AllSuccess allSuccess) {
 
     	String userId = User.currentUserName();
     	goal.setUserId(userId);
         goalRepository.save(goal);
+
+        //목표가 전부 달성되었는지 여부 저장
         allSuccessService.save(userId);
 
         return "redirect:list";
     }
 
-    @GetMapping("update") //목표수정하기
+    //목표수정하기
+    @GetMapping("update")
     public String update(Model model, @RequestParam("id") int id) {
 
 		Goal goal = goalRepository.findById(id);
@@ -88,62 +100,77 @@ public class GoalController {
 		return "goal/update";
 	}
 
-    @PostMapping("update") //목표수정하기
+    @PostMapping("update")
 	public String update(Model model, Goal goal) {
-    	String userId = User.currentUserName();
+
     	goalRepository.save(goal);
+
+    	String userId = User.currentUserName();
+    	//목표가 전부 달성되었는지 여부 저장
     	allSuccessService.save(userId);
 
 		return "redirect:list";
 	}
 
-    @RequestMapping("delete") //목표삭제하기-> 갯수가0일 경우 목표완료로 보지 않음을 처리해야함
+    //목표삭제하기-> 갯수가0일 경우 목표완료로 보지 않음을 처리해야함
+    @RequestMapping("delete")
     public String delete(Model model, int id) {
 
         goalRepository.deleteById(id);
+
         String userId = User.currentUserName();
+      //목표가 전부 달성되었는지 여부 저장
         allSuccessService.save(userId);
 
         return "redirect:list";
     }
 
-
-
-
-    @GetMapping("present") //보상설정하기
+    //보상설정하기
+    @GetMapping("present")
     public String present(Model model) {
 
     	String userId = User.currentUserName();
     	int count = presentRepository.countByUserId(userId);
-    	if(count == 0)
+
+    	//조건: 보상을 설정했는지 안했는지 여부
+    	if(count == 0)//안했을 경우, 새로운 객체 생성하여 전달
     		model.addAttribute("present", new Present());
-    	else
+    	else //존재하는 경우, 찾아서 전달
     		model.addAttribute("present", presentRepository.findByUserId(userId));
+
 		return "goal/present";
 	}
 
-
-
     @Transactional
-    @PostMapping("present") //보상설정하기
+    @PostMapping("present")
 	public String present(HttpServletRequest request, @RequestPart MultipartFile files, Model model, Present present) throws Exception {
 
+    	//이미지 경로에서 원래 파일 이름을 가져온다.
     	String sourceFileName=files.getOriginalFilename();
+
+    	//확장자를 소문자로 가져온다.
     	String sourceFileNameExtension=FilenameUtils.getExtension(sourceFileName).toLowerCase();
     	File destinationFile;
     	String destinationFileName;
-    	String fileUrl="C:/imageUpload/";
-    			//"C:/Users/LG/Documents/workspace-spring-tool-suite-4-4.11.0.RELEASE/AfterGoal1/src/main/resources/static/images/";
 
+    	//이미지 파일을 저장할 곳
+    	String fileUrl="C:/imageUpload/";
+
+    	//폴더 내에 이미지 파일끼리 이름이 겹칠 경우를 대비한 처리+최종경로
     	do {
     		destinationFileName=RandomStringUtils.randomAlphanumeric(32)+"."+sourceFileNameExtension;
     		destinationFile=new File(fileUrl+destinationFileName);
     	}while(destinationFile.exists());
 
+    	//부모 폴더 생성
     	destinationFile.getParentFile().mkdirs();
+
+    	//만든 경로와 이름으로 업로드하기위한 작업
     	files.transferTo(destinationFile);
 
+    	//Service에서 저장처리
     	presentService.save(destinationFileName, sourceFileName, fileUrl, present);
+
 
 		return "redirect:list";
 	}

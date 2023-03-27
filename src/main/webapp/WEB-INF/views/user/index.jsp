@@ -17,7 +17,7 @@
 <body>
 <div class="container">
   <div class="box">
-    <h1>After Goal</h1>
+    <a href="${R}goal/list"><h1>After Goal</h1></a>
     <h2>My Page</h2>
     <table>
       <tr>

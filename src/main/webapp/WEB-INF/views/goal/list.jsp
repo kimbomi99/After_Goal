@@ -9,17 +9,17 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="${R}res/common.js"></script>
   <script src="${R}res/rolling.js"></script>
-  
   <link rel="stylesheet" type="text/css" href="${R}res/common.css" />
   <style>
     td:nth-child(1) { text-align: center; min-width: 100px; }  
-    td:nth-child(2) { font-color: red; }
+    div.box { background-color: #FFFACD; width: 30%; height: 150px; border-style: outset; padding-top: 30px;
+    position: relative; top: 100px; left: 10%; text-align: center; color: gray;}
   </style>
 </head>
 <body>
 <div class="container">
-<a style="margin: 10% 1% 0% 80%; font-size: 13pt;"> ${ userId }님 안녕하세요! </a>
-<a href="${R}user/index" style="margin: 0% 1% 0% 0%;">마이페이지</a>
+<a style="margin: 10% 1% 0% 80%; font-size: 13pt;"><sec:authentication property="name" />님 안녕하세요! </a>
+<a href="${R}user/index" style="margin-right: 1%;">마이페이지</a>
 <a href="${R}logout_processing" >로그아웃</a>
   <h1>After Goal</h1><hr>
  
@@ -34,18 +34,12 @@
        <div style="position:relative; top: 10%; text-align: center;" id="banner_1">
        
        	 <c:forEach var="success" items="${ allSuccess }">
-          
             <a style="font-size: 12pt; color: blue;">${ success.userId }님이 모든 목표를 달성했습니다! <br></a>
           </c:forEach>
-      
-       	
         </div>
-          
       </div>
-      
     </td>       
   </tr>
- 
 </table>
 
     
@@ -81,23 +75,26 @@
       </tbody>
     </table>
     
-    <a href="present" class="btn" >보상 설정</a>
     
+    <div class="box">
+    	<h2>${ list_count }개 중 ${ success_count }개 달성 완료!</h2>
+    	<h3>모든 목표 달성까지 ${ list_count-success_count } 목표 남음.</h3>
+    	<c:if test="${ list_count == success_count && list_count != 0 }">
+      		<h4 style="color: red;"> "모든 목표 달성!! 축하드립니다~" </h4>
+    	</c:if>
+   </div>
+    
+    <c:if test="${ image==null  }" >
+    	<a href="present" class="btn" style="font-size: 13pt; position: relative; top: -150px; left: 80%;">보상 설정</a>
+    </c:if>
     <c:if test="${ image!=null  }" >
-    	<img src="/images/${image.filename}" style="width:300px;height:auto; margin: 5% 0% 5% 0%;">
+    	<a href="present"><img src="/images/${image.filename}" style="width:35%; height:250px; 
+    		 border-color: #FAEBD7; border-style: double; position: relative; top: -120px; left: 50%;"></a>
     </c:if>
     
-    <h2>${ list_count } </h2>
-    <h3>${ success_count } </h3>
-   
-   
-    <c:if test="${ list_count == success_count && list_count != 0 }">
-      <div class="success"> "모든 목표 달성!! 축하드립니다~" </div>
-    </c:if>
   </form>
  <footer>${ image.resolution }</footer>
   
-
 </div>
 </body>
 <script>

@@ -11,11 +11,16 @@
   <link rel="stylesheet" type="text/css" href="${R}res/common.css" />
   <style>
     td:nth-child(1) { text-align: center; min-width: 100px; }  
+    h2 { margin-top: 5%; margin-left: 20%; font-size: 25pt; }
+    
   </style>
 </head>
 <body>
 <div class="container">
-  <h1>After Goal</h1>
+<a style="margin: 10% 1% 0% 80%; font-size: 13pt;"> ${ goal.userId }님 안녕하세요! </a>
+<a href="${R}user/index" style="margin-right: 1%;">마이페이지</a>
+<a href="${R}logout_processing" >로그아웃</a>
+  <a href="list"><h1>After Goal</h1></a><hr>
   <h2>목표수정</h2>
   
   <form method="post">

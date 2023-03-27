@@ -23,25 +23,31 @@ public class HomeController {
 
 	 @Autowired
 	    GoalRepository goalRepository;
-	@Autowired UserService userService;
 	@Autowired
-    AllSuccessRepository allSuccessRepository;
+		UserService userService;
+	@Autowired
+    	AllSuccessRepository allSuccessRepository;
 
 
+	//초기화면
     @RequestMapping({"/", "index"})
     public String index(Model model) {
 
+    	//모든 유저 대상, 모든 목표 달성한 유저를 보이기 위해 전달
     	List<AllSuccess> allSuccess=allSuccessRepository.findBySuccess(true);
-
     	model.addAttribute("allSuccess", allSuccess);
+
         return "home/index";
     }
 
+    //로그인
     @RequestMapping("login")
     public String login() {
         return "home/login";
     }
 
+
+    //회원가입
     @GetMapping("join")
     public String join(Model model) {
         model.addAttribute(new UserRegistration());
@@ -52,12 +58,12 @@ public class HomeController {
     public String join(Model model,
             @Valid UserRegistration userRegistration, BindingResult bindingResult)
     {
-    	if (userService.hasErrors(userRegistration, bindingResult))  {
+    	if (userService.hasErrors(userRegistration, bindingResult))  { //에러발생 시 페이지 넘김없이 에러메시지를 보여줌
             return "home/join";
         }
         userService.save(userRegistration);
 
-        return "home/index";
+        return "redirect:index";
     }
 
 

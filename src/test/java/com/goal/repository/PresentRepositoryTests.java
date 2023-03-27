@@ -42,6 +42,8 @@ public class PresentRepositoryTests {
         Present present1 = new Present();
         present1.setUserId("abc");
         present1.setFilename("아이패드");
+        present1.setFileOriName("wish");
+        present1.setFileurl("C:/imageUpload/");
         present1.setResolution("열심히 하자! 할 수 있다!!!");
 
         // 저장
