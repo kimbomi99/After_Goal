@@ -14,6 +14,7 @@ public class Present {
 	String filename;
 	String fileOriName;
 	String fileurl;
+
 	String resolution;
 
 }

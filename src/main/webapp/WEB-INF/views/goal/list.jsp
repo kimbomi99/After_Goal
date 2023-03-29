@@ -98,8 +98,6 @@
 </div>
 </body>
 <script>
-// banner_roll("div태그 id", 배너1개높이, 딜레이, 1칸이동속도, 0);
-
 banner_roll("banner_1", 18, 2000, 40, 0);
 </script>
 </html>
